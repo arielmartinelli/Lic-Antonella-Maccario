@@ -4,3 +4,4 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button{transition:none}}
 @media(max-width:720px){h1{font-size:clamp(30px,9.4vw,44px);letter-spacing:-1.5px}}
 .hero{grid-template-columns:1fr}.hero-copy{max-width:760px}.hero .intro{max-width:470px}.hero .credentials{max-width:574px}
+[data-icon="external"]{width:15px;height:15px}
