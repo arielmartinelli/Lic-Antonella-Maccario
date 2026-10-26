@@ -2,6 +2,20 @@ const paths={external:'<path d="M6 18 18 6M6 6h12v12"/>',arrow:'<path d="M5 12h1
 document.querySelectorAll('[data-icon]').forEach(el=>{el.setAttribute('aria-hidden','true');el.innerHTML=`<svg viewBox="0 0 24 24">${paths[el.dataset.icon]||paths.arrow}</svg>`});
 document.querySelectorAll('[data-wa]').forEach(el=>{el.href='https://wa.me/541154626792?text='+encodeURIComponent('Hola Antonella, quisiera coordinar una consulta de nutrición.');el.target='_blank';el.rel='noopener'});
 
+const navigationHeader = document.querySelector('header');
+let headerFramePending = false;
+function updateHeaderAppearance() {
+  navigationHeader.classList.toggle('is-scrolled', window.scrollY > 24);
+  headerFramePending = false;
+}
+window.addEventListener('scroll', () => {
+  if (headerFramePending) return;
+  headerFramePending = true;
+  requestAnimationFrame(updateHeaderAppearance);
+}, { passive: true });
+window.addEventListener('pageshow', updateHeaderAppearance);
+updateHeaderAppearance();
+
 // Content stays visible when motion is disabled or observers are unavailable.
 const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
 if (!motionPreference.matches && 'IntersectionObserver' in window) {

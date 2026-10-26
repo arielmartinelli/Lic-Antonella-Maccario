@@ -1,5 +1,6 @@
 /* Keep navigation available while preserving its place in the layout. */
-header{position:sticky;top:0;z-index:50;background:rgba(252,253,251,.96);box-shadow:0 1px 0 rgba(216,229,223,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+header{position:sticky;top:0;z-index:50;background:transparent;box-shadow:0 1px 0 transparent;transition:background .3s ease,box-shadow .3s ease;backdrop-filter:none;-webkit-backdrop-filter:none}
+header.is-scrolled{background:rgba(252,253,251,.8);box-shadow:0 1px 0 rgba(216,229,223,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 html{scroll-padding-top:126px}
 @media(max-width:720px){html{scroll-padding-top:105px}}
 /* Subtle movement, using opacity and transforms without shifting the layout. */
@@ -42,7 +43,7 @@ nav a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;bac
 @media(prefers-reduced-motion:reduce){
  html{scroll-behavior:auto}
  .reveal,.reveal.is-visible{opacity:1;transform:none;transition:none}
- .button,.icon,.text-link,.text-link::after,nav a,nav a::after,.location,.service-list article::before,.service-title .icon,.tags span,.brand img,.footer-links a,.phone{transition:none!important}
+ header,.button,.icon,.text-link,.text-link::after,nav a,nav a::after,.location,.service-list article::before,.service-title .icon,.tags span,.brand img,.footer-links a,.phone{transition:none!important}
  .button:hover,.button:active,.button:hover .icon,.brand:hover img,.service-list article:hover .service-title .icon,.text-link:hover [data-icon="external"],.footer-links a:hover [data-icon="external"]{transform:none}
  body::before{display:none}
 }
