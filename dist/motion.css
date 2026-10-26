@@ -1,0 +1,44 @@
+/* Subtle movement, using opacity and transforms without shifting the layout. */
+.reveal.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease var(--reveal-delay,0ms),transform .7s cubic-bezier(.22,1,.36,1) var(--reveal-delay,0ms),border-color .3s ease,box-shadow .3s ease,background .3s ease}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
+.button{position:relative;overflow:hidden;transition:background .25s ease,transform .25s ease,box-shadow .25s ease}
+.button .icon,.text-link .icon,.footer-links .icon{transition:transform .25s ease}
+.text-link{position:relative;transition:color .2s ease}
+.text-link::after{content:'';position:absolute;left:0;bottom:-5px;height:1px;width:calc(100% - 27px);background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+nav a{position:relative;padding:8px 0;transition:color .2s ease}
+nav a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--purple));transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.location{transition:border-color .3s ease,box-shadow .3s ease,background .3s ease}
+.service-list article{position:relative}
+.service-list article::before{content:'';position:absolute;inset:0 -16px;background:#e4f0e9;border-radius:6px;opacity:0;transition:opacity .3s ease;pointer-events:none;z-index:-1}
+.service-title .icon{transition:color .3s ease,transform .3s ease}
+.service-list article{isolation:isolate}
+.tags span{transition:background .25s ease,border-color .25s ease,color .25s ease}
+.brand img{transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.footer-links a,.phone{transition:color .2s ease}
+.button:active{transform:translateY(0) scale(.98)}
+.text-link:focus-visible::after,nav a:focus-visible::after{transform:scaleX(1)}
+.location:focus-within{border-color:#9a85ae;box-shadow:0 12px 32px #5634740d}
+@media(hover:hover) and (pointer:fine){
+ .button:hover{transform:translateY(-3px);box-shadow:0 9px 24px #56347425}
+ .button:hover .icon{transform:translateX(4px)}
+ .text-link:hover::after,nav a:hover::after{transform:scaleX(1)}
+ .text-link:hover [data-icon="external"],.footer-links a:hover [data-icon="external"]{transform:translate(2px,-2px)}
+ .location:hover{border-color:#a2c9c1;background:#f5faf7;box-shadow:0 14px 36px #294c4010}
+ .service-list article:hover::before{opacity:1}
+ .service-list article:hover .service-title .icon{color:var(--purple);transform:translateY(-3px) rotate(-5deg)}
+ .tags span:hover{background:#e6f3ee;border-color:#a3c9c1;color:var(--purple)}
+ .brand:hover img{transform:rotate(-5deg) scale(1.06)}
+ .footer-links a:hover{color:var(--purple)}
+ .phone:hover{color:white}
+}
+@supports(animation-timeline:scroll()){
+ body::before{content:'';position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--purple));z-index:100;pointer-events:none;transform-origin:left;animation:reading-progress linear;animation-timeline:scroll(root)}
+ @keyframes reading-progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ .reveal,.reveal.is-visible{opacity:1;transform:none;transition:none}
+ .button,.icon,.text-link,.text-link::after,nav a,nav a::after,.location,.service-list article::before,.service-title .icon,.tags span,.brand img,.footer-links a,.phone{transition:none!important}
+ .button:hover,.button:active,.button:hover .icon,.brand:hover img,.service-list article:hover .service-title .icon,.text-link:hover [data-icon="external"],.footer-links a:hover [data-icon="external"]{transform:none}
+ body::before{display:none}
+}
