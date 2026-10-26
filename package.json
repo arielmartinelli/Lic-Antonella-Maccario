@@ -1,0 +1,10 @@
+{
+  "name": "lic-antonella-maccario",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing de la Lic. Antonella Maccario, nutricionista",
+  "scripts": {
+    "start": "node preview.cjs",
+    "check": "node --check dist/script.js"
+  }
+}
