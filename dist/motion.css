@@ -1,3 +1,7 @@
+/* Keep navigation available while preserving its place in the layout. */
+header{position:sticky;top:0;z-index:50;background:rgba(252,253,251,.96);box-shadow:0 1px 0 rgba(216,229,223,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+html{scroll-padding-top:126px}
+@media(max-width:720px){html{scroll-padding-top:105px}}
 /* Subtle movement, using opacity and transforms without shifting the layout. */
 .reveal.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease var(--reveal-delay,0ms),transform .7s cubic-bezier(.22,1,.36,1) var(--reveal-delay,0ms),border-color .3s ease,box-shadow .3s ease,background .3s ease}
 .reveal.is-visible{opacity:1;transform:translateY(0)}
